@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "dumanapp",
+    "slug": "dumanapp",
+    "version": "1.0.0",
+    "orientation": "default",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "scheme": "dumanapp",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.dumanapp"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.dumanapp",
+      "googleServicesFile": "./google-services.json"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-asset",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#0F0F1A",
+          "image": "./assets/splash-icon.png"
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "9c86c800-bba6-4e52-bb04-f98bd8cefb4a"
+      }
+    }
+  }
+}
