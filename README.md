@@ -1,65 +1,111 @@
-# Starter Template with React Navigation
+# DumanApp (Sigara Takip Uygulaması)
 
-This is a minimal starter template for React Native apps using Expo and React Navigation.
+DumanApp, kullanıcının günlük sigara tüketimini takip etmesini sağlayan, takvim üzerinden geçmiş kayıtlarını görebildiği ve belirli aralıklarla hatırlatıcı bildirimler alabildiği bir mobil uygulamadır. Ayrıca admin paneli üzerinden kullanıcılara özel mesajlar gönderilebilir.
 
-It includes the following:
+Bu proje **Expo (Development Build)** ve **React Native** kullanılarak geliştirilmiştir.
 
-- Example [Native Stack](https://reactnavigation.org/docs/native-stack-navigator) with a nested [Bottom Tab](https://reactnavigation.org/docs/bottom-tab-navigator)
-- Web support with [React Native for Web](https://necolas.github.io/react-native-web/)
-- TypeScript support and configured for React Navigation
-- Automatic [deep link](https://reactnavigation.org/docs/deep-linking) and [URL handling configuration](https://reactnavigation.org/docs/configuring-links)
-- Theme support [based on system appearance](https://reactnavigation.org/docs/themes/#using-the-operating-system-preferences)
-- Expo [Development Build](https://docs.expo.dev/develop/development-builds/introduction/) with [Continuous Native Generation](https://docs.expo.dev/workflow/continuous-native-generation/)
+## Özellikler
 
-## Getting Started
-
-1. Create a new project using this template:
-
-   ```sh
-   npx create-expo-app@latest --template react-navigation/template
-   ```
-
-2. Edit the `app.json` file to configure the `name`, `slug`, `scheme` and bundle identifiers (`ios.bundleIdentifier` and `android.bundleIdentifier`) for your app.
-
-3. Edit the `src/App.tsx` file to start working on your app.
-
-## Running the app
-
-- Install the dependencies:
-
-  ```sh
-  npm install
-  ```
-
-- Start the development server:
-
-  ```sh
-  npm start
-  ```
-
-- Build and run iOS and Android development builds:
-
-  ```sh
-  npm run ios
-  # or
-  npm run android
-  ```
-
-- In the terminal running the development server, press `i` to open the iOS simulator, `a` to open the Android device or emulator, or `w` to open the web browser.
-
-## Notes
-
-This project uses a [development build](https://docs.expo.dev/develop/development-builds/introduction/) and cannot be run with [Expo Go](https://expo.dev/go). To run the app with Expo Go, edit the `package.json` file, remove the `expo-dev-client` package and `--dev-client` flag from the `start` script.
-
-We highly recommend using the development builds for normal development and testing.
-
-The `ios` and `android` folder are gitignored in the project by default as they are automatically generated during the build process ([Continuous Native Generation](https://docs.expo.dev/workflow/continuous-native-generation/)). This means that you should not edit these folders directly and use [config plugins](https://docs.expo.dev/config-plugins/) instead. However, if you need to edit these folders, you can remove them from the `.gitignore` file so that they are tracked by git.
-
-## Resources
-
-- [React Navigation documentation](https://reactnavigation.org/)
-- [Expo documentation](https://docs.expo.dev/)
+- **Günlük Takip:** Kullanıcı, içtiği sigara sayısını anlık olarak kaydedebilir.
+- **Takvim Görünümü:** Geçmiş günlere ait tüketim verilerini takvim üzerinde görüntüleme.
+- **Bildirimler:** Kullanıcının belirlediği zamanlarda hatırlatıcı bildirimler (Scheduled Notifications).
+- **Admin Mesajları:** Firebase üzerinden uzaktan yapılandırılabilen mesajlar.
+- **Giriş Ekranı:** Kullanıcı adı ile basit giriş sistemi.
 
 ---
 
-Demo assets are from [lucide.dev](https://lucide.dev/)
+##  Gereksinimler
+
+Projeyi yerel ortamınızda çalıştırmadan önce aşağıdaki araçların kurulu olduğundan emin olun:
+
+- **Node.js** (LTS sürümü önerilir)
+- **Git**
+- **Java Development Kit (JDK 17)** (Android derlemeleri için zorunludur)
+- **Android Studio** (Android SDK ve Emulator kurulumu için)
+- **Expo CLI** (`npm install -g expo-cli`)
+
+---
+
+## Kurulum
+
+1. **Repoyu Klonlayın:**
+   ```bash
+   git clone https://github.com/kullaniciadi/dumanapp.git
+   cd dumanapp
+   ```
+
+2. **Bağımlıları Yükleyin:**
+   ```bash
+   npm install
+   ```
+   Eğer hata alırsanız `--legacy-peer-deps` bayrağını deneyebilirsiniz:
+   ```bash
+   npm install --legacy-peer-deps
+   ```
+
+---
+
+## Uygulamayı Çalıştırma
+
+Bu proje **Development Build** kullanmaktadır. Klasik Expo Go uygulaması ile **çalışmayabilir**. Yerel bir build almanız gerekir.
+
+### Android İçin Çalıştırma:
+
+1. **Emülatörü Açın:** Android Studio üzerinden bir emülatör başlatın veya fiziksel cihazınızı USB hata ayıklama modu açık şekilde bağlayın.
+2. **Projeyi Başlatın:**
+   ```bash
+   npm run android
+   ```
+   Bu komut, `android` klasöründeki native projeyi derleyip cihaza yükleyecektir. İlk derleme biraz zaman alabilir.
+
+### Metro Bundler'ı Başlatma:
+Eğer uygulama zaten yüklü ise sadece Metro sunucusunu başlatmak için:
+```bash
+npm start
+```
+(Gelen ekranda `a` tuşuna basarak Android'e bağlanabilirsiniz).
+
+---
+
+## Olası Hatalar ve Çözümleri
+
+### 1. `google-services.json` Eksik Hatası
+Firebase yapılandırması için `google-services.json` dosyasının `android/app/` dizininde veya proje kök dizininde olması gerekir. Eğer bu dosya yoksa uygulama derlenirken hata verir.
+**Çözüm:** Firebase konsolundan `google-services.json` dosyasını indirip proje kök dizinine ve `android/app/` içine koyun.
+
+### 2. `JAVA_HOME` Ayarlanmamış
+Derleme sırasında Java hatası alıyorsanız JDK yolunuz tanımlı değildir.
+**Çözüm:** Ortam değişkenlerine `JAVA_HOME` ekleyin. Genellikle: `C:\Program Files\Java\jdk-17...`
+
+### 3. "SDK location not found"
+Android SDK yolu bulunamıyor hatası.
+**Çözüm:** `android/local.properties` dosyası oluşturun ve içine şunu yazın (Windows için):
+```properties
+sdk.dir=C\:\\Users\\KULLANICI_ADINIZ\\AppData\\Local\\Android\\Sdk
+```
+*(Ters eğik çizgilere dikkat edin)*
+
+### 4. Bağımlılık Çakışmaları 
+`npm install` sırasında hata alıyorsanız, eski `node_modules` klasörünü silip tekrar deneyin:
+```bash
+rm -rf node_modules
+# veya Windows powershell: Remove-Item -Recurse -Force node_modules
+npm install
+```
+
+### 5. Metro Bundler Kilitlenmesi
+Eğer değişiklikler anlık yansımıyor veya tuhaf hatalar alıyorsanız önbelleği temizleyerek başlatın:
+```bash
+npm start -- --reset-cache
+# veya
+npx expo start -c
+```
+
+---
+
+## 📱 Dosya Yapısı Özet
+
+- `src/`: Uygulamanın kaynak kodları (Ekranlar, Bileşenler, Utils).
+- `android/`: Native Android proje dosyaları.
+- `app.json`: Expo yapılandırma dosyası.
+- `App.tsx` / `index.tsx`: Giriş noktası.
